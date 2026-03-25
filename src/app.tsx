@@ -2,16 +2,14 @@
 import React, { useState } from 'react';
 import { render, Box, Text, useInput, useApp } from 'ink';
 import Header from './components/Header.js';
-import About from './components/About.js';
 import Experience from './components/Experience.js';
 import Contact from './components/Contact.js';
 
-type Section = 'header' | 'about' | 'experience' | 'contact';
+type Section = 'header' | 'experience' | 'contact';
 
-const SECTIONS: Section[] = ['header', 'about', 'experience', 'contact'];
+const SECTIONS: Section[] = ['header', 'experience', 'contact'];
 const LABELS: Record<Section, string> = {
   header: 'Home',
-  about: 'About',
   experience: 'Experience',
   contact: 'Contact',
 };
@@ -54,7 +52,6 @@ function App() {
       {/* Content */}
       <Box marginTop={1}>
         {active === 'header' && <Header />}
-        {active === 'about' && <About />}
         {active === 'experience' && <Experience isActive={active === 'experience'} />}
         {active === 'contact' && <Contact />}
       </Box>

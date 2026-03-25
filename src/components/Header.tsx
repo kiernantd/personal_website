@@ -33,6 +33,24 @@ export default function Header() {
           </Text>
         </Box>
       </Box>
+
+      <Box flexDirection="column" marginTop={1}>
+        <Text bold color="cyan">About Me</Text>
+        <Text>{'─'.repeat(60)}</Text>
+        <Text> </Text>
+        <Text>
+          Early-career Software Engineer with experience building secure and scalable
+          systems across backend infrastructure, distributed services, and applied
+          cryptography. Strong foundation in systems programming, software design, and
+          concurrent architectures.
+        </Text>
+        <Text> </Text>
+        <Text>
+          My goal is to become a cloud engineer delivering top-end IaaS solutions.
+          I love working at the intersection of hardware and software — low-latency
+          pipelines, distributed systems, and polished user experiences.
+        </Text>
+      </Box>
     </Box>
   );
 }
