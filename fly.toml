@@ -10,7 +10,7 @@ primary_region = 'ewr'
 
 [[services]]
   protocol = "tcp"
-  internal_port = 22
+  internal_port = 2222
 
   [[services.ports]]
     port = 22

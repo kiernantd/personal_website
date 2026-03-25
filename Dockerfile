@@ -22,8 +22,8 @@ RUN mkdir -p /home/guest/.ssh && chmod 700 /home/guest/.ssh && chown guest:guest
 
 # Generate host keys and configure sshd
 RUN ssh-keygen -A
-RUN printf 'PermitRootLogin no\nPasswordAuthentication no\nMatch User guest\n  PasswordAuthentication yes\n  PermitEmptyPasswords yes\n' \
+RUN printf 'Port 2222\nPermitRootLogin no\nPasswordAuthentication no\nMatch User guest\n  PasswordAuthentication yes\n  PermitEmptyPasswords yes\n' \
     > /etc/ssh/sshd_config.d/website.conf
 
-EXPOSE 22
+EXPOSE 2222
 CMD ["/usr/sbin/sshd", "-D"]
