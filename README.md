@@ -1,9 +1,9 @@
 # kiernan.dev — SSH Terminal Portfolio
 
-A personal portfolio that runs entirely as a terminal UI, accessed over SSH. No browser, no JavaScript bundle, no web framework — visitors connect directly via `ssh guest@kiernan-personal-site.fly.dev` and land in a fully interactive, keyboard-navigable interface built with React.
+A personal portfolio that runs entirely as a terminal UI, accessed over SSH. No browser, no JavaScript bundle, no web framework — visitors connect directly via `ssh -p 2222 guest@kiernan-devane-personal.fly.dev` and land in a fully interactive, keyboard-navigable interface built with React.
 
 ```
-ssh guest@kiernan-devane-personal.fly.dev
+ssh -p 2222 guest@kiernan-devane-personal.fly.dev
 ```
 
 ---
@@ -37,7 +37,7 @@ The application has no web server, no WebSocket layer, and no client-side code. 
 ```
 visitor's terminal
       │
-      │  ssh guest@kiernan-personal-site.fly.dev
+      │  ssh -p 2222 guest@kiernan-devane-personal.fly.dev
       ▼
   Fly.io TCP proxy  (port 22)
       │
