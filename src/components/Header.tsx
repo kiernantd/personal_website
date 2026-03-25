@@ -43,7 +43,7 @@ export default function Header() {
         <Box marginRight={4}>
           <Text>{asciiPhoto}</Text>
         </Box>
-        <Box flexDirection="column" justifyContent="center">
+        <Box flexDirection="column">
           <Box flexDirection="column">
             {nameLines.map((line, i) => (
               <Text key={i} color={hslToHex((i * 35 + phase * 6) % 360, 100, 62)}>
@@ -54,25 +54,23 @@ export default function Header() {
           <Text color="gray">
             Aspiring full-stack dev — cloud infrastructure, AI architecture, system design
           </Text>
+          <Text> </Text>
+          <Text bold color="cyan">About Me</Text>
+          <Text>{'─'.repeat(60)}</Text>
+          <Text> </Text>
+          <Text>
+            Early-career Software Engineer with experience building secure and scalable
+            systems across backend infrastructure, distributed services, and applied
+            cryptography. Strong foundation in systems programming, software design, and
+            concurrent architectures.
+          </Text>
+          <Text> </Text>
+          <Text>
+            My goal is to become a cloud engineer delivering top-end IaaS solutions.
+            I love working at the intersection of hardware and software — low-latency
+            pipelines, distributed systems, and polished user experiences.
+          </Text>
         </Box>
-      </Box>
-
-      <Box flexDirection="column" marginTop={1}>
-        <Text bold color="cyan">About Me</Text>
-        <Text>{'─'.repeat(60)}</Text>
-        <Text> </Text>
-        <Text>
-          Early-career Software Engineer with experience building secure and scalable
-          systems across backend infrastructure, distributed services, and applied
-          cryptography. Strong foundation in systems programming, software design, and
-          concurrent architectures.
-        </Text>
-        <Text> </Text>
-        <Text>
-          My goal is to become a cloud engineer delivering top-end IaaS solutions.
-          I love working at the intersection of hardware and software — low-latency
-          pipelines, distributed systems, and polished user experiences.
-        </Text>
       </Box>
     </Box>
   );
