@@ -20,10 +20,12 @@ RUN echo "guest:" | chpasswd -e 2>/dev/null || \
 RUN passwd -d guest 2>/dev/null || true
 RUN mkdir -p /home/guest/.ssh && chmod 700 /home/guest/.ssh && chown guest:guest /home/guest/.ssh
 
-# Generate host keys and configure sshd
-RUN ssh-keygen -A
+# Configure sshd (host keys are written at runtime from Fly.io secrets)
 RUN printf 'Port 2222\nPermitRootLogin no\nPasswordAuthentication no\nMatch User guest\n  PasswordAuthentication yes\n  PermitEmptyPasswords yes\n' \
     > /etc/ssh/sshd_config.d/website.conf
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 2222
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/entrypoint.sh"]
