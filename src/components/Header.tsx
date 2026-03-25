@@ -44,6 +44,7 @@ export default function Header({ cols }: HeaderProps) {
 
   return (
     <Box flexDirection="column" paddingX={2}>
+      {/* Top row: photo + name side by side */}
       <Box flexDirection="row" alignItems="flex-start">
         {showPhoto && (
           <Box marginRight={4}>
@@ -51,33 +52,34 @@ export default function Header({ cols }: HeaderProps) {
           </Box>
         )}
         <Box flexDirection="column">
-          <Box flexDirection="column">
-            {nameLines.map((line, i) => (
-              <Text key={i} color={hslToHex((i * 35 + phase * 6) % 360, 100, 62)}>
-                {line}
-              </Text>
-            ))}
-          </Box>
+          {nameLines.map((line, i) => (
+            <Text key={i} color={hslToHex((i * 35 + phase * 6) % 360, 100, 62)}>
+              {line}
+            </Text>
+          ))}
           <Text color="gray">
             Aspiring full-stack dev — cloud infrastructure, AI architecture, system design
           </Text>
-          <Text> </Text>
-          <Text bold color="cyan">About Me</Text>
-          <Text>{'─'.repeat(60)}</Text>
-          <Text> </Text>
-          <Text>
-            Early-career Software Engineer with experience building secure and scalable
-            systems across backend infrastructure, distributed services, and applied
-            cryptography. Strong foundation in systems programming, software design, and
-            concurrent architectures.
-          </Text>
-          <Text> </Text>
-          <Text>
-            My goal is to become a cloud engineer delivering top-end IaaS solutions.
-            I love working at the intersection of hardware and software — low-latency
-            pipelines, distributed systems, and polished user experiences.
-          </Text>
         </Box>
+      </Box>
+
+      {/* About Me below the photo+name row */}
+      <Box flexDirection="column" marginTop={1}>
+        <Text bold color="cyan">About Me</Text>
+        <Text>{'─'.repeat(60)}</Text>
+        <Text> </Text>
+        <Text>
+          Early-career Software Engineer with experience building secure and scalable
+          systems across backend infrastructure, distributed services, and applied
+          cryptography. Strong foundation in systems programming, software design, and
+          concurrent architectures.
+        </Text>
+        <Text> </Text>
+        <Text>
+          My goal is to become a cloud engineer delivering top-end IaaS solutions.
+          I love working at the intersection of hardware and software — low-latency
+          pipelines, distributed systems, and polished user experiences.
+        </Text>
       </Box>
     </Box>
   );

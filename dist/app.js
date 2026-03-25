@@ -27,11 +27,6 @@ function App() {
         stdout.on('resize', onResize);
         return () => { stdout.off('resize', onResize); };
     }, [stdout]);
-    // Clear the alternate screen buffer on every section change so stale
-    // content from a taller previous section never bleeds through.
-    useEffect(() => {
-        process.stdout.write('\x1b[2J\x1b[H');
-    }, [active]);
     useInput((input, key) => {
         if (input === 'q' || (key.ctrl && input === 'c')) {
             exit();
@@ -45,6 +40,6 @@ function App() {
             setActive(SECTIONS[(idx - 1 + SECTIONS.length) % SECTIONS.length]);
         }
     });
-    return (_jsxs(Box, { flexDirection: "column", children: [_jsxs(Box, { flexDirection: "row", borderStyle: "single", borderBottom: true, paddingX: 1, children: [SECTIONS.map((s, i) => (_jsx(Box, { marginRight: i < SECTIONS.length - 1 ? 3 : 0, children: _jsx(Text, { color: s === active ? 'cyan' : undefined, dimColor: s !== active, bold: s === active, children: s === active ? `[ ${LABELS[s]} ]` : LABELS[s] }) }, s))), _jsx(Box, { flexGrow: 1 }), _jsx(Text, { dimColor: true, children: "\u2190 \u2192 Tab  q:quit" })] }), _jsxs(Box, { marginTop: 1, children: [active === 'header' && _jsx(Header, { cols: cols }), active === 'experience' && _jsx(Experience, { isActive: active === 'experience' }), active === 'contact' && _jsx(Contact, {})] })] }));
+    return (_jsxs(Box, { flexDirection: "column", children: [_jsxs(Box, { flexDirection: "row", borderStyle: "single", borderBottom: true, paddingX: 1, children: [SECTIONS.map((s, i) => (_jsx(Box, { marginRight: i < SECTIONS.length - 1 ? 3 : 0, children: _jsx(Text, { color: s === active ? 'cyan' : undefined, dimColor: s !== active, bold: s === active, children: s === active ? `[ ${LABELS[s]} ]` : LABELS[s] }) }, s))), _jsx(Box, { flexGrow: 1 }), _jsx(Text, { dimColor: true, children: "\u2190 \u2192 Tab  q:quit" })] }), _jsxs(Box, { marginTop: 1, children: [active === 'header' && _jsx(Header, { cols: cols }), active === 'experience' && _jsx(Experience, { isActive: active === 'experience' }), active === 'contact' && _jsx(Contact, {})] }, active)] }));
 }
 render(_jsx(App, {}));

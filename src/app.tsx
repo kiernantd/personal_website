@@ -34,12 +34,6 @@ function App() {
     return () => { stdout.off('resize', onResize); };
   }, [stdout]);
 
-  // Clear the alternate screen buffer on every section change so stale
-  // content from a taller previous section never bleeds through.
-  useEffect(() => {
-    process.stdout.write('\x1b[2J\x1b[H');
-  }, [active]);
-
   useInput((input, key) => {
     if (input === 'q' || (key.ctrl && input === 'c')) {
       exit();
@@ -71,8 +65,9 @@ function App() {
         <Text dimColor>← → Tab  q:quit</Text>
       </Box>
 
-      {/* Content */}
-      <Box marginTop={1}>
+      {/* Content — key={active} forces a clean remount on every section
+           change so Ink fully erases the previous section's content */}
+      <Box key={active} marginTop={1}>
         {active === 'header' && <Header cols={cols} />}
         {active === 'experience' && <Experience isActive={active === 'experience'} />}
         {active === 'contact' && <Contact />}
