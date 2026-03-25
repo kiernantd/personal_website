@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text } from 'ink';
 import figlet from 'figlet';
 import fs from 'fs';
@@ -8,6 +8,16 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const nameArt = figlet.textSync('KIERNAN', { font: 'Epic' });
+const nameLines = nameArt.split('\n');
+
+function hslToHex(h: number, s: number, l: number): string {
+  s /= 100; l /= 100;
+  const k = (n: number) => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  const toHex = (x: number) => Math.round(255 * x).toString(16).padStart(2, '0');
+  return `#${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`;
+}
 
 let asciiPhoto = '';
 try {
@@ -20,6 +30,13 @@ try {
 }
 
 export default function Header() {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => setPhase((p) => p + 1), 80);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Box flexDirection="column" paddingX={2}>
       <Box flexDirection="row" alignItems="flex-start">
@@ -27,7 +44,13 @@ export default function Header() {
           <Text>{asciiPhoto}</Text>
         </Box>
         <Box flexDirection="column" justifyContent="center">
-          <Text color="cyan">{nameArt}</Text>
+          <Box flexDirection="column">
+            {nameLines.map((line, i) => (
+              <Text key={i} color={hslToHex((i * 35 + phase * 6) % 360, 100, 62)}>
+                {line}
+              </Text>
+            ))}
+          </Box>
           <Text color="gray">
             Aspiring full-stack dev — cloud infrastructure, AI architecture, system design
           </Text>
