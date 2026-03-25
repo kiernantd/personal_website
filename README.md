@@ -3,7 +3,7 @@
 A personal portfolio that runs entirely as a terminal UI, accessed over SSH. No browser, no JavaScript bundle, no web framework — visitors connect directly via `ssh guest@kiernan-personal-site.fly.dev` and land in a fully interactive, keyboard-navigable interface built with React.
 
 ```
-ssh guest@kiernan-personal-site.fly.dev
+ssh guest@kiernan-devane-personal.fly.dev
 ```
 
 ---
