@@ -1,0 +1,13 @@
+app = "kiernan-personal-site"
+primary_region = "iad"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 22
+
+  [[services.ports]]
+    port = 22
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
