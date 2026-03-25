@@ -29,8 +29,13 @@ try {
   asciiPhoto = '  [no photo]\n  run ascii-image-converter\n  to generate assets/profile.txt';
 }
 
-export default function Header() {
+interface HeaderProps {
+  cols: number;
+}
+
+export default function Header({ cols }: HeaderProps) {
   const [phase, setPhase] = useState(0);
+  const showPhoto = cols >= 90;
 
   useEffect(() => {
     const timer = setInterval(() => setPhase((p) => p + 1), 80);
@@ -40,9 +45,11 @@ export default function Header() {
   return (
     <Box flexDirection="column" paddingX={2}>
       <Box flexDirection="row" alignItems="flex-start">
-        <Box marginRight={4}>
-          <Text>{asciiPhoto}</Text>
-        </Box>
+        {showPhoto && (
+          <Box marginRight={4}>
+            <Text>{asciiPhoto}</Text>
+          </Box>
+        )}
         <Box flexDirection="column">
           <Box flexDirection="column">
             {nameLines.map((line, i) => (
