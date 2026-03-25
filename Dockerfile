@@ -8,6 +8,9 @@ RUN npm ci --omit=dev
 COPY dist/ ./dist/
 COPY assets/ ./assets/
 
+# Make the app executable and register it as a valid login shell
+RUN chmod +x /app/dist/app.js && echo "/app/dist/app.js" >> /etc/shells
+
 # Create a locked-down guest user whose login shell is the Ink app
 RUN deluser guest 2>/dev/null || true && adduser -D -s /app/dist/app.js guest
 
